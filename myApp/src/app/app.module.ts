@@ -14,6 +14,7 @@ import { InicioPageModule } from '../pages/inicio/inicio.module';
 import { SlidePageModule } from '../pages/slide/slide.module';
 import { HttpModule } from '@angular/http';
 import { FilmeProvider } from '../providers/filme/filme';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { FilmeProvider } from '../providers/filme/filme';
     IonicModule.forRoot(MyApp),
     InicioPageModule,
     SlidePageModule,
-    HttpModule
+    HttpModule,
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

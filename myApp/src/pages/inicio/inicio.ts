@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { FilmeProvider } from '../../providers/filme/filme';
 
 /**
  * Generated class for the InicioPage page.
@@ -12,9 +13,15 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 @Component({
   selector: 'page-inicio',
   templateUrl: 'inicio.html',
+  providers:[
+    FilmeProvider
+  ]
 })
-export class InicioPage {
 
+
+
+export class InicioPage {
+  public lista_filmes = new Array<any>();
   public nome_obj:string = "Marcos Faria";
   public valor:number = 5;
 
@@ -28,11 +35,30 @@ export class InicioPage {
     hora_coment:"10h atrás" 
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    private filmeProvider: FilmeProvider) {
+
+
+
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad InicioPage');
+    this.filmeProvider.pegarUltimoFilme().subscribe(
+      data=>{
+        const response = (data as any);
+        const obj_retorno = JSON.parse(response._body)
+        console.log(obj_retorno);
+      },
+      error=>{
+        console.log(error);
+      }
+
+    )
+
+
   }
 
 }
