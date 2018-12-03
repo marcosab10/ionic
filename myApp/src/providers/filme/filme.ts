@@ -1,5 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Http } from '@angular/http';
 
 /*
   Generated class for the FilmeProvider provider.
@@ -14,7 +14,7 @@ export class FilmeProvider {
   private urlAPI = "https://api.themoviedb.org/3";
   private requisicao = "/movie/popular";
 
-  constructor(public http: HttpClient) {
+  constructor(public http: Http) {
     console.log('Hello FilmeProvider Provider');
   }
 

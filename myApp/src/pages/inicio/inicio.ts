@@ -39,9 +39,6 @@ export class InicioPage {
     public navCtrl: NavController, 
     public navParams: NavParams, 
     private filmeProvider: FilmeProvider) {
-
-
-
   }
 
   ionViewDidLoad() {
@@ -50,7 +47,8 @@ export class InicioPage {
       data=>{
         const response = (data as any);
         const obj_retorno = JSON.parse(response._body)
-        console.log(obj_retorno);
+        //console.log(obj_retorno);
+        this.lista_filmes = obj_retorno.results;
       },
       error=>{
         console.log(error);

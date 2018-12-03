@@ -1,0 +1,10 @@
+{
+
+  "compileOnSave": true,
+  "compilerOptions": {
+      "outDir": "dist",
+      "noEmitOnError": false
+  }
+
+
+}
