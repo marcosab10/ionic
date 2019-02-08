@@ -12,14 +12,14 @@
   <ion-list>
 
     <ion-item-sliding *ngFor="let person of persons">
-      <ion-item>
+      <ion-item (click)="editPerson(person)" >
         <avatar  item-start
         [name]="person.nome"
         [email]="person.contact.email"
         [size]="40"
         [displayType]="'circle'"></avatar>
 
-        <h2>{{person.nome}}</h2>
+        <h2>{{person?.nome}}</h2>
         <p>{{person?.contact?.email}}</p>
         <p>{{person?.contact?.phone}}</p>
       </ion-item>

@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { CallNumber } from '@ionic-native/call-number';
+import { PersonProvider } from '../../providers/person.provider';
+import { EditPersonPage } from '../edit-person/edit-person';
 
 @Component({
   selector: 'page-home',
@@ -10,38 +12,30 @@ export class HomePage {
 
   persons: Array<any> = new Array<any>();
 
-  constructor(public navCtrl: NavController, private callNumber: CallNumber) {
-    let person1 = {
-      nome: 'Marcos',
-      url: 'marcosab10@yahoo.com.br',
-      contact: {
-        phone:'996439112',
-        email:'marcosab10@yahoo.com.br',
-        type:'Morno',
-        dateNextContact: new Date().toISOString(),
-        comentary:'Ligar quando chegar a data combinada'
-      }
-    }
+  constructor(public navCtrl: NavController,
+              private callNumber: CallNumber,
+              private personProvide: PersonProvider) {
+  }
 
-    let person2 = {
-      nome: 'Jhennifer',
-      url: 'jhennifer@gmail.com',
-      contact: {
-        phone:null,
-        email:'jhennifer@gmail.com',
-        type:'Frio',
-        dateNextContact: new Date().toISOString(),
-        comentary:'Falar sobre a indicação'
-      }
-    }
+// No angular puro, na class implements OnInit
+//  ngOnInit(): void {
+//    this.personProvide.allPersons()
+//      .then((persons : Array<Person>) => this.persons = this.persons);
+//  }
 
-    this.persons.push(person1);
-    this.persons.push(person2);
+  ionViewWillEnter() {
+    this.personProvide.allPersons()
+         .then((persons : Array<Person>) => this.persons = persons);
   }
 
   callContact(contact: any){
     console.log('contato é: ' + contact.phone);
     this.callNumber.callNumber(contact.phone, true);
+  }
+
+// Abriu um objeto javascript {}, deu um nome para ele e passou o valor {'person' : person}
+  editPerson(person: Person){
+    this.navCtrl.push(EditPersonPage, {'person' : person});
   }
 
 
