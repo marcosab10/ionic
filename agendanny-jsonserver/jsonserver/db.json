@@ -1,0 +1,50 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    },
+    {
+      "id": 2,
+      "title": "Aula rest",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "persons": [
+    {
+      "hash": "",
+      "name": "Marcos Faria",
+      "contact": {
+        "phone": "996439112",
+        "email": "marcosab10@yahoo.com.br",
+        "type": "Morno",
+        "dateNextContact": "2019-02-09T03:37:00.709Z",
+        "comentary": "teste"
+      },
+      "id": 1
+    },
+    {
+      "id": 2,
+      "hash": "",
+      "name": "Teste",
+      "contact": {
+        "phone": "232132131",
+        "email": "teste@gmail.com",
+        "type": "Morno",
+        "dateNextContact": "2019-02-09T04:08:39.596Z",
+        "comentary": "foi"
+      }
+    }
+  ]
+}

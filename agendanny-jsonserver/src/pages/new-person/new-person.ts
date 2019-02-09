@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { PersonProvider } from '../../providers/person.provider';
+import { PersonJsonProvider } from '../../providers/person-json.provider';
 
 
 @Component({
@@ -13,7 +13,7 @@ export class NewPersonPage {
   frmPerson: FormGroup;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-              public personProvider: PersonProvider) {
+              public personJsonProvider: PersonJsonProvider) {
     this.frmPerson = this.definePersonForm();
   }
 
@@ -39,7 +39,7 @@ export class NewPersonPage {
   }
 
   onSubmit({value, valid} : {value: any, valid: boolean} ){
-    this.personProvider.save(value);
+    this.personJsonProvider.save(value).subscribe(() => this.navCtrl.goToRoot({})) ;
     this.navCtrl.goToRoot({});
   }
 

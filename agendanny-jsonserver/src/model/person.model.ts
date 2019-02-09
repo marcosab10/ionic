@@ -1,4 +1,5 @@
 class Person {
+  id?: number;
   hash?: string;
   nome?: string;
   contact?: Contact;

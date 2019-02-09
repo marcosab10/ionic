@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { HttpClientModule } from '@angular/common/http';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -17,6 +18,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PersonProvider } from '../providers/person.provider';
 import { IonicStorageModule } from '@ionic/storage';
 import { EditPersonPage } from '../pages/edit-person/edit-person';
+import { PersonJsonProvider } from '../providers/person-json.provider';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,7 @@ import { EditPersonPage } from '../pages/edit-person/edit-person';
   imports: [
     BrowserModule,
     FormsModule,
+    HttpClientModule,
     ReactiveFormsModule,
     IonicModule.forRoot(MyApp),
     AvatarModule.forRoot(),
@@ -50,7 +53,8 @@ import { EditPersonPage } from '../pages/edit-person/edit-person';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     CallNumber,
-    PersonProvider
+    PersonProvider,
+    PersonJsonProvider
   ]
 })
 export class AppModule {}

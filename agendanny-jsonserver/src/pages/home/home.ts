@@ -1,7 +1,7 @@
 import { Component} from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { CallNumber } from '@ionic-native/call-number';
-import { PersonProvider } from '../../providers/person.provider';
+import { PersonJsonProvider } from '../../providers/person-json.provider';
 import { EditPersonPage } from '../edit-person/edit-person';
 
 @Component({
@@ -14,7 +14,7 @@ export class HomePage {
 
   constructor(public navCtrl: NavController,
               private callNumber: CallNumber,
-              private personProvide: PersonProvider) {
+              private personProvide: PersonJsonProvider) {
   }
 
 // No angular puro, na class implements OnInit
@@ -25,7 +25,7 @@ export class HomePage {
 
   ionViewWillEnter() {
     this.personProvide.allPersons()
-         .then((persons : Array<Person>) => this.persons = persons);
+         .subscribe((persons : Array<Person>) => this.persons = persons);
   }
 
   callContact(contact: any){
