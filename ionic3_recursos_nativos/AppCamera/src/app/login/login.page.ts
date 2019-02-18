@@ -27,7 +27,10 @@ export class LoginPage implements OnInit {
               err => this.msg = "Erro no login"
             );
         },
-        err => this.msg = "Não existe esse reciurso"
+        err => {
+          this.msg = "Não existe esse recurso";
+          this.navCtrl.navigateRoot('/home');
+        }
       );
 
 
