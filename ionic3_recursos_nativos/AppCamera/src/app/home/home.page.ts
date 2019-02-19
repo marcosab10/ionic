@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { TextToSpeech } from '@ionic-native/text-to-speech/ngx';
 
 @Component({
   selector: 'app-home',
@@ -9,8 +10,14 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 export class HomePage {
   base64Image:string;
 
-  constructor(private camera: Camera) {
+  constructor(private camera: Camera, private tts: TextToSpeech) {
 
+  }
+
+  ngOnInit(){
+    this.tts.speak({text:'Olá, Marcos! Não se preeocupe você vai ganhar muito dinheiro com criptomoedas.', locale:'pt-BR'})
+  .then(() => console.log('Success'))
+  .catch((reason: any) => console.log(reason));
   }
 
   abreCamera(){
