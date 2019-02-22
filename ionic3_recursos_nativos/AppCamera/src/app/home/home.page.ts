@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { TextToSpeech } from '@ionic-native/text-to-speech/ngx';
+import { SpeechRecognition } from '@ionic-native/speech-recognition/ngx';
 
 @Component({
   selector: 'app-home',
@@ -9,13 +10,14 @@ import { TextToSpeech } from '@ionic-native/text-to-speech/ngx';
 })
 export class HomePage {
   base64Image:string;
+  msg:string;
 
-  constructor(private camera: Camera, private tts: TextToSpeech) {
+  constructor(private camera: Camera, private tts: TextToSpeech, private speechRecognition: SpeechRecognition) {
 
   }
 
   ngOnInit(){
-    this.tts.speak({text:'Olá, Marcos! Não se preeocupe você vai ganhar muito dinheiro com criptomoedas.', locale:'pt-BR'})
+    this.tts.speak({text:'Olá, Marcos! O que você deseja?', locale:'pt-BR'})
   .then(() => console.log('Success'))
   .catch((reason: any) => console.log(reason));
   }
@@ -37,6 +39,46 @@ export class HomePage {
      // Handle error
     });
 
+  }
+
+  comandoDeVoz(){
+    this.msg = "";
+    // Check feature available
+    this.speechRecognition.isRecognitionAvailable().then((available: boolean) => {
+      if (available){
+        // Check permission
+        this.speechRecognition.hasPermission().then((hasPermission: boolean) => {
+          if (hasPermission){
+
+            // Start the recognition process
+            this.speechRecognition.startListening({language: 'pt-BR'}).subscribe(
+              (matches: string[]) => {
+                for (let item of matches){
+                  this.msg += item + ' ';
+                }
+                if(matches[0] == "tirar foto"){
+                  this.abreCamera();
+                }
+
+              },
+              (onerror) => alert('Error: ' + onerror)
+            );
+          } else {
+            // Request permissions
+            this.speechRecognition.requestPermission().then(
+                () => {
+                  this.comandoDeVoz();
+                },
+                () => {
+                  this.msg = "Você negou a permissão para comando de voz."
+                }
+              )
+          }
+        });
+      } else{
+        this.msg = "Recurso de comando não está disponível."
+      }
+    });
   }
 
 
