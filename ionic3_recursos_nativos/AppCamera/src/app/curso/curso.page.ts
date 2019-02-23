@@ -26,6 +26,7 @@ export class CursoPage implements OnInit {
 
   ionViewDidEnter(){
     this.cursos =  this.cursoService.listar();
+    console.log('Chamou');
   }
 
   adicionar(){

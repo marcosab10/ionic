@@ -13,6 +13,10 @@ import { TouchID } from '@ionic-native/touch-id/ngx';
 import { TextToSpeech } from '@ionic-native/text-to-speech/ngx';
 import { SpeechRecognition } from '@ionic-native/speech-recognition/ngx';
 import { IonicStorageModule } from '@ionic/storage';
+import { Contacts } from '@ionic-native/contacts/ngx';
+import { CameraMock } from './mocks/cameraMock';
+
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,10 +25,12 @@ import { IonicStorageModule } from '@ionic/storage';
   providers: [
     StatusBar,
     SplashScreen,
-    Camera,
+  //  Camera,
+    { provide: Camera, useClass: CameraMock },
     TouchID,
     TextToSpeech,
     SpeechRecognition,
+    Contacts,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

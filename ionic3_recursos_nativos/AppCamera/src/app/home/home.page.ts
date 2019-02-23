@@ -3,6 +3,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { TextToSpeech } from '@ionic-native/text-to-speech/ngx';
 import { SpeechRecognition } from '@ionic-native/speech-recognition/ngx';
 import { NavController} from '@ionic/angular';
+import { Contacts, Contact, ContactField, ContactName } from '@ionic-native/contacts/ngx';
 
 @Component({
   selector: 'app-home',
@@ -13,8 +14,11 @@ export class HomePage {
   base64Image:string;
   msg:string;
 
-  constructor(public navCtrl: NavController ,private camera: Camera, private tts: TextToSpeech,
-    private speechRecognition: SpeechRecognition) {
+  constructor(public navCtrl: NavController ,
+              private camera: Camera,
+              private tts: TextToSpeech,
+              private speechRecognition: SpeechRecognition,
+              private contacts: Contacts) {
 
   }
 
@@ -85,6 +89,19 @@ export class HomePage {
         this.msg = "Recurso de comando não está disponível."
       }
     });
+  }
+
+
+  criaContato(){
+    let contact: Contact = this.contacts.create();
+
+    contact.name = new ContactName(null, 'Faria', 'Marcos');
+    contact.phoneNumbers = [new ContactField('celular', '6471234567')];
+    contact.save().then(
+      () => alert('Contato salvo!'),
+      (error: any) => alert('Erro ao salvar contato')
+    );
+
   }
 
 
