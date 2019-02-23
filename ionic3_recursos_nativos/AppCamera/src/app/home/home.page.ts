@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { TextToSpeech } from '@ionic-native/text-to-speech/ngx';
 import { SpeechRecognition } from '@ionic-native/speech-recognition/ngx';
+import { NavController} from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +13,8 @@ export class HomePage {
   base64Image:string;
   msg:string;
 
-  constructor(private camera: Camera, private tts: TextToSpeech, private speechRecognition: SpeechRecognition) {
+  constructor(public navCtrl: NavController ,private camera: Camera, private tts: TextToSpeech,
+    private speechRecognition: SpeechRecognition) {
 
   }
 
@@ -20,6 +22,10 @@ export class HomePage {
     this.tts.speak({text:'Olá, Marcos! O que você deseja?', locale:'pt-BR'})
   .then(() => console.log('Success'))
   .catch((reason: any) => console.log(reason));
+  }
+
+  abreCurso(){
+    this.navCtrl.navigateForward('/curso');
   }
 
   abreCamera(){
