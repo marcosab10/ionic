@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "107570392724",
+    "firebase_url": "https://bitcoinmentor-64fa3.firebaseio.com",
+    "project_id": "bitcoinmentor-64fa3",
+    "storage_bucket": "bitcoinmentor-64fa3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:107570392724:android:bdb0982c9db60805",
+        "android_client_info": {
+          "package_name": "com.savesim.BitCoinMentor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "107570392724-muv6hccs8p6mn8ole5kiivva6ru3s66l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBys0Kcl3-1WXZflLkGHNpd0fr26CNEiSU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
