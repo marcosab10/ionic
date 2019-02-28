@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Push, PushObject, PushOptions } from '@ionic-native/push/ngx';
+import { Dialogs } from '@ionic-native/dialogs/ngx';
 
 @Component({
   selector: 'app-tab1',
@@ -8,7 +9,8 @@ import { Push, PushObject, PushOptions } from '@ionic-native/push/ngx';
 })
 export class Tab1Page {
 
-  constructor (private push: Push){
+  constructor (private push: Push,
+               private dialogs: Dialogs){
     // to check if we have permission
   this.push.hasPermission()
     .then((res: any) => {
@@ -49,5 +51,11 @@ export class Tab1Page {
 
     });
   }
+
+  exibeAlerta(txt:string){
+  this.dialogs.alert('txt')
+    .then(() => console.log('Dialog dismissed ok'))
+    .catch(e => console.log('Error displaying dialog', e));
+}
 
 }
