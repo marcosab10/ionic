@@ -6,4 +6,29 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content padding>
+  <h2>Previsão em {{previsao?.results.city_name}}</h2>
+
+  <ion-list>
+    <ion-item>
+      <ion-label position="fixed">Cidade</ion-label>
+      <ion-input type="text" [(ngModel)]="cidade" ></ion-input>
+    </ion-item>
+  </ion-list>
+
+<ion-button (click)="buscarPorCidade()" expand="block">Buscar</ion-button>
+
+
+<ion-card *ngFor="let item of previsao?.results.forecast">
+  <ion-card-content>
+    <ion-card-title>
+    {{item.date}} - {{item.weekday}}
+    </ion-card-title>
+    <p>
+      Máx: {{item.max}}  e Min: {{item.min}}  - {{item.description}}
+    </p>
+  </ion-card-content>
+</ion-card>
+
+
+</ion-content>
