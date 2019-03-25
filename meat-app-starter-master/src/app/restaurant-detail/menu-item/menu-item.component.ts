@@ -15,6 +15,9 @@ export class MenuItemComponent implements OnInit {
   ngOnInit() {
   }
 
+ //Serve para enviar o elemento menuItem clicado para o componentParent que no caso é o menu
+ // Lá esse menuItem será recebido através de (add)="shoppingCart.addItem($event)" passado para o
+ // shoppingCart onde ele será adicionado no carrinho de compras, que está armazenado no ShoppingCartService
   emitAddEvent(){
     this.add.emit(this.menuItem)
   }
