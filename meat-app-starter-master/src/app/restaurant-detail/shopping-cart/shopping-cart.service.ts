@@ -36,8 +36,8 @@ export class ShoppingCartService {
   }
 
 // Usa o map para transformar o array de item em array de valor
-// depois usa o reduce para somar todos os valores iniciando de 0 a soma
-  total():number {
+// depois usa o reduce para somar todos os valores iniciando a soma de 0
+  total(): number {
     return this.items
     .map(item => item.value())
     .reduce((prev, value) => prev + value, 0)
