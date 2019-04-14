@@ -16,8 +16,9 @@ export class MenuItemComponent implements OnInit {
   }
 
  //Serve para enviar o elemento menuItem clicado para o componentParent que no caso é o menu
- // Lá esse menuItem será recebido através de (add)="shoppingCart.addItem($event)" passado para o
- // shoppingCart onde ele será adicionado no carrinho de compras, que está armazenado no ShoppingCartService
+ // Lá esse menuItem será recebido através de (add)="shoppingCart.addItem($event)" que irá executar o codigo interno:
+ // hoppingCart.addItem($event) passado para o shoppingCart o menuItem em $event
+ // onde ele será adicionado no carrinho de compras, que está armazenado no ShoppingCartService
   emitAddEvent(){
     this.add.emit(this.menuItem)
   }
