@@ -14,6 +14,8 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms'
     }
   ]
 })
+
+//ControlValueAccessor permitir que o formulario tenha acesso ao controle do valor do componente
 export class RadioComponent implements OnInit, ControlValueAccessor {
 
   //  Quem estiver usando o meu componente de fora irá conseguir passar um valor
