@@ -1,8 +1,18 @@
+import {Injectable} from '@angular/core'
+
 import { CartItem } from "app/restaurant-detail/shopping-cart/cart-item.model";
 import { MenuItem } from "app/restaurant-detail/menu-item/menu-item.model";
+import { NotificationService } from "app/shared/messages/notification.service";
 
+@Injectable()
 export class ShoppingCartService {
   items: CartItem[] = []
+
+constructor(private notificationService: NotificationService){
+
+}
+
+
   clear(){
     this.items = []
   }
@@ -15,6 +25,7 @@ export class ShoppingCartService {
     } else {
       this.items.push(new CartItem(item))
     }
+    this.notificationService.notify(`Você adicionou o item ${item.name}`)
 
   }
 
@@ -33,6 +44,7 @@ export class ShoppingCartService {
 //localiza o indice e remove um elemento que é o proprio indice quando se passa 1
   removeItem(item:CartItem){
     this.items.splice(this.items.indexOf(item), 1)
+    this.notificationService.notify(`Você removeu o item ${item.menuItem.name}`)
   }
 
 // Usa o map para transformar o array de item em array de valor
