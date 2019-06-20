@@ -36,10 +36,10 @@ export class SnackbarComponent implements OnInit {
 
   }
 
-// vou deixar como visivel depois vou trocar por um timer usando o switchMap e vou fazer o subscribe para
+// vou deixar como visivel depois vou trocar por um timer (trocar o Observable) usando o switchMap e vou fazer o subscribe para
 // ouvir o que o timer vai me dar, quando tempo estourar eu vo lá e mudo a visibilidade no snackbar
 // um detalhe é que o switchMap ao ser invocado pela segunda vez verifica que ainda existe um timer rodando
-// entãso ele faz um unsubscribe desse timer e faz um subscribe do novo timer
+// então ele faz um unsubscribe desse timer e faz um subscribe do novo timer
   ngOnInit() {
     this.notificationService.notifier.do(message=>{
       this.message = message
