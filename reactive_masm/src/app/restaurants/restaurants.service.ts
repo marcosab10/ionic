@@ -14,8 +14,12 @@ export class RestaurantsService {
 
   constructor(private http: Http){}
 
-  restaurants(): Observable<Restaurant[]> {
-    return this.http.get(`${MEAT_API}/restaurants`)
+ // {} isso é um objeto, então para filtra no json Server, é possivel
+ // passar um segundo paramentro com um objeto com o atributo params
+ // poderia filtrar pelo nome, mas ai tem passar o nome completo
+ // passando 'q' ele entende que é uma busca geral
+  restaurants(search?: string): Observable<Restaurant[]> {
+    return this.http.get(`${MEAT_API}/restaurants`, {params: {q: search}})
       .map(response => response.json())
       .catch(ErrorHandler.handleError)
   }
