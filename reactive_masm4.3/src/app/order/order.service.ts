@@ -4,14 +4,14 @@ import { CartItem } from "app/restaurant-detail/shopping-cart/cart-item.model";
 import { Order, OrderItem } from "app/order/order.model";
 import { Observable } from "rxjs/observable";
 import 'rxjs/add/operator/map'
-import { Http, Headers, RequestOptions } from "@angular/http";
+import { HttpClient } from "@angular/common/http";
 
 import {MEAT_API} from '../app.api'
 
 @Injectable()
 export class OrderService {
 
-  constructor(private cartService: ShoppingCartService, private http: Http){}
+  constructor(private cartService: ShoppingCartService, private http: HttpClient){}
 
   itemsValue(): number {
     return this.cartService.total()
@@ -41,15 +41,7 @@ export class OrderService {
 //mas através do map .map(order => order.id)  eu dou o nome para o retorno de order
 //e acesso a propiedade id dele
   checkOrder(order: Order): Observable<string>{
-    const headers = new Headers()
-    headers.append('Content-Type', 'application/json')
-    //stringify transformando numa string texto,
-    //RequestOptions sentando na request o header
-    //map pegando apenas o conteudo do response de retorno
-    return this.http.post(`${MEAT_API}/orders`,
-                          JSON.stringify(order),
-                          new RequestOptions({headers: headers}))
-                          .map(response => response.json())
+    return this.http.post<Order>(`${MEAT_API}/orders`,order)
                           .map(order => order.id)
   }
 
